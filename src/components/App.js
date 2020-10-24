@@ -10,7 +10,7 @@ class App extends Component {
             ballPosition: { left: "0px" }
         };
         this.buttonClickHandler = this.buttonClickHandler.bind(this)
-        this.renderChoice = this.renderChoice.bind(this)
+        this.ArrowRight = this.ArrowRight.bind(this)
     };
 
     //call back function
@@ -19,7 +19,7 @@ class App extends Component {
             renderBall:true
         })
     }
-    renderChoice(e) {
+    ArrowRight(e) {
         e = e || window.event;
         if (e.keyCode == '39') {
             this.setState({
@@ -33,7 +33,7 @@ class App extends Component {
 
     //bind ArrowRight keydown event
     componentDidMount() {
-        window.onkeydown = this.renderChoice
+        window.onkeydown = this.ArrowRight
     }
 
     render() {

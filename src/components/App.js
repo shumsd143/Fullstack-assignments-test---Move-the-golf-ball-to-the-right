@@ -20,8 +20,7 @@ class App extends Component {
         })
     }
     ArrowRight(e) {
-        e = e || window.event;
-        if (e.keyCode == '39') {
+        if (e.key === 'ArrowRight') {
             this.setState({
                  ballPosition: { left: this.state.posi+ "px"}, posi: this.state.posi + 5 
             })

@@ -9,28 +9,37 @@ class App extends Component {
             posi : 0,
             ballPosition: { left: "0px" }
         };
-        this.renderChoice = this.renderChoice.bind(this)
         this.buttonClickHandler = this.buttonClickHandler.bind(this)
+        this.renderChoice = this.renderChoice.bind(this)
     };
 
     //call back function
     buttonClickHandler() {
-   
-   }
-    renderChoice() {
-		if(this.state.renderBall){return <div className="ball" style={this.state.ballPosition}></div>}
-		 else   return <button onClick={this.buttonClickHandler} >Click For One Ball</button>
+        this.setState({
+            renderBall:true
+        })
+    }
+    renderChoice(e) {
+        e = e || window.event;
+        if (e.keyCode == '39') {
+            this.setState({
+                posi:this.state.posi+1,
+                ballPosition:{
+                    left: (this.state.posi+1)*5+'px'
+                }
+            })
+        }
     }
 
     //bind ArrowRight keydown event
     componentDidMount() {
-      
+        window.onkeydown = this.renderChoice
     }
 
     render() {
         return (
             <div className="playground">
-                {this.renderChoice()}
+                {this.state.renderBall?<div className="ball" style={this.state.ballPosition}></div>:<button onClick={this.buttonClickHandler} >Click For One Ball</button>}
             </div>
         )
     }
